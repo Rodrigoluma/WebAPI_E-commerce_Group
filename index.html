@@ -16,6 +16,28 @@
         <input type="text" name="senha"><br><br>
         <button type="submit">Enviar</button>
     </form>
-
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.9.2/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.9.2/firebase-analytics.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+      
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+          apiKey: "AIzaSyALwHgQk-lIvCwUvm6f4RrGWonKZAdpulY",
+          authDomain: "webapie-commercegroup.firebaseapp.com",
+          projectId: "webapie-commercegroup",
+          storageBucket: "webapie-commercegroup.appspot.com",
+          messagingSenderId: "1762798978",
+          appId: "1:1762798978:web:e68e4216bfe14a35f5f39b",
+          measurementId: "G-0LEKSK2TCT"
+        };
+      
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+      </script>
 </body>
 </html>
