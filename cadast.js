@@ -79,12 +79,4 @@ function writeUserData(userId, nameCad, emailCad, passCad, photoCad) {
 firebase-adminsdk-hkyhi@e-commercedbtechteam.iam.gserviceaccount.com
  -->
 
-<!-- snippet de config de admin SDK -->
-<!-- var admin = require("firebase-admin");
-
-var serviceAccount = require("path/to/serviceAccountKey.json");
-
-admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount),
-  databaseURL: "https://e-commercedbtechteam-default-rtdb.firebaseio.com"
-}); --> */
+ */
