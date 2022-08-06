@@ -4,6 +4,9 @@ import initializeApp from "firebase/app";
 
 import getAnalytics from "firebase/analytics";
 
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+
+
 // TODO: Add SDKs for Firebase products that you want to use
 
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -58,12 +61,11 @@ const passCad = document.getElementById('password');
 const photoCad = document.getElementById('imgAvatar').value;
 const btnSend = document.getElementById('btnCad');
 
-const nameLog = document.getElementById('emailLogin').value;
+const emailLog = document.getElementById('emailLogin').value;
 const passLog = document.getElementById('passLogin').value;
 const btnLogin = document.getElementById('btnLogin');
 //---------------------NOVO USER EMAIL/SENHA
 
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 
 btnSend.addEventListener('click', () => {
     const auth = getAuth();
@@ -84,7 +86,23 @@ btnSend.addEventListener('click', () => {
 
 //---------------------LOGIN USER EMAIL/SENHA
 
+btnLogin.addEventListener('click', () => {
+   
 
+const auth = getAuth();
+signInWithEmailAndPassword(auth, emailLog, passLog)
+  .then((userCredential) => {
+    // Signed in
+    const user = userCredential.user;
+    console.log('logado');
+    // ...
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    console.log('não logou');
+  });
+})
 /* 
 <!-- url do realtime database -->
 <!-- https://console.firebase.google.com/u/1/project/e-commercedbtechteam/database/e-commercedbtechteam-default-rtdb/data/~2F -->
