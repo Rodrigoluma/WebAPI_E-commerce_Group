@@ -2,9 +2,14 @@ const nameCad = document.getElementById('name').value;
 const emailCad = document.getElementById('email').value;
 const passCad = document.getElementById('password').value;
 const photoCad = document.getElementById('imgAvatar').value;
+const btnSend = document.getElementById('btnCad');
 
 const nameLog = document.getElementById('emailLogin').value;
 const passLog = document.getElementById('passLogin').value;
+const btnLogin = document.getElementById('btnLogin');
+
+btnSend.addEventListener('click', writeUserData());
+
 
 // Import the functions you need from the SDKs you need
 
@@ -48,7 +53,17 @@ const analytics = getAnalytics(app);
 
 // ------------------------------------------   CÓDIGO PARA INSERIR NO DB
 
+import { getDatabase, ref, set } from "firebase/database";
 
+function writeUserData(userId, nameCad, emailCad, passCad, photoCad) {
+  const db = getDatabase();
+  set(ref(db, 'users/' + userId), {
+    username: nameCad,
+    email: emailCad,
+    password: passCad,
+    profile_picture : photoCad
+  });
+}
 
 
 
