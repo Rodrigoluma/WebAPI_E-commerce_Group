@@ -6,38 +6,96 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Teste no firebase</title>
 </head>
-<body>
-    <h1>Testes</h1>
-    <form action="">
-        <label for="login">Login</label><span></span>
-        <input type="text" name="login">
-        <br><br>
-        <label for="senha">Senha</label><span></span>
-        <input type="text" name="senha"><br><br>
-        <button type="submit">Enviar</button>
+<body class="container" style="margin-top: 50px;
+    width: 50%; height:auto;">
+      
+    <h2 class="text-primary" style=
+        "margin-left: 15px; margin-bottom: 10px">
+        Cadastrar no firebase
+    </h2>
+      
+    <form class="container" id="contactForm">
+        <div class="card">
+            <div class="card-body">
+                <div class="form-group">
+                    <label for="exampleFormControlInput1">
+                        Enter Your Name
+                    </label>
+                     <span></span>
+                    <input type="text" class="form-control" 
+                    id="name" placeholder="Enter your name">
+                </div><BR></BR>
+  
+                <div class="form-group">
+                    <label for="exampleFormControlInput1">
+                        Email address
+                    </label>
+                      <span></span>
+                    <input type="email" class="form-control" 
+                    id="email" placeholder="name@example.com">
+                </div><br><br>
+
+                <div class="form-group">
+                  <label for="exampleFormControlInput1">
+                      Password
+                  </label>
+                    <span></span>
+                  <input type="password" class="form-control" 
+                  id="password" placeholder="********">
+              </div><br><br>
+
+                <div class="form-group">
+                  <label for="exampleFormControlInput1">
+                      Imagem avatar
+                  </label>
+                    <span></span>
+                  <input type="file" accept=".png, .jpeg, .jpg" class="form-control" 
+                  id="imgAvatar" placeholder="Somente png ou jpeg">
+              </div><br>
+
+            </div>
+            <button type="submit" class="btn btn-primary"
+                style="margin-left: 15px; margin-top: 10px">
+                Submit
+            </button>
+        </div>
     </form>
-    <script type="module">
-        // Import the functions you need from the SDKs you need
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.9.2/firebase-app.js";
-        import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.9.2/firebase-analytics.js";
-        // TODO: Add SDKs for Firebase products that you want to use
-        // https://firebase.google.com/docs/web/setup#available-libraries
+
+  <hr size="10">
+
+  <h2 class="text-primary" style=
+        "margin-left: 15px; margin-bottom: 10px">
+        Login no firebase
+    </h2>
       
-        // Your web app's Firebase configuration
-        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-        const firebaseConfig = {
-          apiKey: "AIzaSyALwHgQk-lIvCwUvm6f4RrGWonKZAdpulY",
-          authDomain: "webapie-commercegroup.firebaseapp.com",
-          projectId: "webapie-commercegroup",
-          storageBucket: "webapie-commercegroup.appspot.com",
-          messagingSenderId: "1762798978",
-          appId: "1:1762798978:web:e68e4216bfe14a35f5f39b",
-          measurementId: "G-0LEKSK2TCT"
-        };
-      
-        // Initialize Firebase
-        const app = initializeApp(firebaseConfig);
-        const analytics = getAnalytics(app);
-      </script>
+    <form class="container" id="contactForm">
+        <div class="card">
+            <div class="card-body">
+                <div class="form-group">
+                    <label for="exampleFormControlInput1">
+                        Enter Your Email
+                    </label>
+                     <span></span>
+                    <input type="email" class="form-control" 
+                    id="emailLogin" placeholder="Enter your email">
+                </div><BR></BR>
+  
+                <div class="form-group">
+                    <label for="exampleFormControlInput1">
+                        Password
+                    </label>
+                      <span></span>
+                    <input type="password" class="form-control" 
+                    id="passLogin" placeholder="********">
+                </div>
+
+            </div>
+            <button type="submit" class="btn btn-primary"
+                style="margin-left: 15px; margin-top: 10px">
+                Login
+            </button>
+        </div>
+    </form>
+    
 </body>
 </html>
