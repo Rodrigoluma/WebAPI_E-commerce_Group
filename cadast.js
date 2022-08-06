@@ -1,6 +1,6 @@
 const nameCad = document.getElementById('name').value;
-const emailCad = document.getElementById('email').value;
-const passCad = document.getElementById('password').value;
+const emailCad = document.getElementById('email');
+const passCad = document.getElementById('password');
 const photoCad = document.getElementById('imgAvatar').value;
 const btnSend = document.getElementById('btnCad');
 
@@ -8,7 +8,7 @@ const nameLog = document.getElementById('emailLogin').value;
 const passLog = document.getElementById('passLogin').value;
 const btnLogin = document.getElementById('btnLogin');
 
-btnSend.addEventListener('click', writeUserData());
+
 
 
 // Import the functions you need from the SDKs you need
@@ -53,7 +53,7 @@ const analytics = getAnalytics(app);
 
 // ------------------------------------------   CÓDIGO PARA INSERIR NO DB
 
-import { getDatabase, ref, set } from "firebase/database";
+/* import { getDatabase, ref, set } from "firebase/database";
 
 function writeUserData(userId, nameCad, emailCad, passCad, photoCad) {
   const db = getDatabase();
@@ -63,11 +63,31 @@ function writeUserData(userId, nameCad, emailCad, passCad, photoCad) {
     password: passCad,
     profile_picture : photoCad
   });
-}
+} */
 
 
+//---------------------NOVO USER EMAIL/SENHA
 
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 
+btnSend.addEventListener('click', () => {
+    const auth = getAuth();
+    createUserWithEmailAndPassword(auth, emailCad.value, passCad.value)
+  .then((userCredential) => {
+    // Signed in
+    alert("user connected");
+    const user = userCredential.user;
+    // ...
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    console.log('erro de cadastro');
+    // ..
+  });
+});
+
+//---------------------LOGIN USER EMAIL/SENHA
 
 
 /* 
