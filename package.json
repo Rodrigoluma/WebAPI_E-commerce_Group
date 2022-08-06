@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/Rodrigoluma/WebAPI_E-commerce_Group#readme",
   "dependencies": {
-    "express": "^4.18.1"
+    "express": "^4.18.1",
+    "firebase": "^9.9.2"
   }
 }
