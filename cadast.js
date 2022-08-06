@@ -1,16 +1,3 @@
-const nameCad = document.getElementById('name').value;
-const emailCad = document.getElementById('email');
-const passCad = document.getElementById('password');
-const photoCad = document.getElementById('imgAvatar').value;
-const btnSend = document.getElementById('btnCad');
-
-const nameLog = document.getElementById('emailLogin').value;
-const passLog = document.getElementById('passLogin').value;
-const btnLogin = document.getElementById('btnLogin');
-
-
-
-
 // Import the functions you need from the SDKs you need
 
 import { initializeApp } from "firebase/app";
@@ -65,7 +52,15 @@ function writeUserData(userId, nameCad, emailCad, passCad, photoCad) {
   });
 } */
 
+const nameCad = document.getElementById('name').value;
+const emailCad = document.getElementById('email');
+const passCad = document.getElementById('password');
+const photoCad = document.getElementById('imgAvatar').value;
+const btnSend = document.getElementById('btnCad');
 
+const nameLog = document.getElementById('emailLogin').value;
+const passLog = document.getElementById('passLogin').value;
+const btnLogin = document.getElementById('btnLogin');
 //---------------------NOVO USER EMAIL/SENHA
 
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
@@ -75,7 +70,7 @@ btnSend.addEventListener('click', () => {
     createUserWithEmailAndPassword(auth, emailCad.value, passCad.value)
   .then((userCredential) => {
     // Signed in
-    alert("user connected");
+    console.log("user connected");
     const user = userCredential.user;
     // ...
   })
