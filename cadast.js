@@ -4,7 +4,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/9.9.2/firebase
 
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.9.2/firebase-analytics.js";
 
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/9.9.2/firebase-auth.js';
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, sendSignInLinkToEmail, signOut } from 'https://www.gstatic.com/firebasejs/9.9.2/firebase-auth.js';
 
 
 // TODO: Add SDKs for Firebase products that you want to use
@@ -55,12 +55,11 @@ function writeUserData(userId, nameCad, emailCad, passCad, photoCad) {
   });
 } */
 
-const nameCad = document.getElementById('name').value;
+
 const emailCad = document.getElementById('email');
 const passCad = document.getElementById('password');
-const photoCad = document.getElementById('imgAvatar').value;
 const btnSend = document.getElementById('btnCad');
-
+const returnCad = document.getElementById('retornocad');
 
 //---------------------NOVO USER EMAIL/SENHA
 
@@ -70,16 +69,51 @@ btnSend.addEventListener('click', () => {
     createUserWithEmailAndPassword(auth, emailCad.value, passCad.value)
   .then((userCredential) => {
     // Signed in
-    console.log("user cadastrado" + emailCad.value + passCad.value);
+    returnCad.innerText = 'Cadastrado com sucesso!';
+    
     const user = userCredential.user;
+    
+    // ...ENVIO DE EMAIL DE VERIFICAÇÃO
+    const actionCodeSettings = {
+        // URL you want to redirect back to. The domain (www.example.com) for this
+        // URL must be in the authorized domains list in the Firebase Console.
+        url: 'https://rodrigoluma.github.io/WebAPI_E-commerce_Group/',
+        // This must be true.
+        handleCodeInApp: true,
+        iOS: {
+          bundleId: 'com.example.ios'
+        },
+        android: {
+          packageName: 'com.example.android',
+          installApp: true,
+          minimumVersion: '12'
+        },
+        dynamicLinkDomain: 'example.page.link'
+      };
+    sendSignInLinkToEmail(auth, emailCad.value, actionCodeSettings)
+  .then(() => {
+    // The link was successfully sent. Inform the user.
+    // Save the email locally so you don't need to ask the user for it again
+    // if they open the link on the same device.
+    window.localStorage.setItem('emailForSignIn', email);
+    console.log('email enviado');
     // ...
   })
   .catch((error) => {
     const errorCode = error.code;
     const errorMessage = error.message;
-    console.log('erro de cadastro');
+    console.log('email nao enviado erro: ' + errorCode + errorMessage);
+    // ...
+  });
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    returnCad.innerText = "Usuário já cadastrado!"
+    
     // ..
   });
+
 });
 
 //---------------------LOGIN USER EMAIL/SENHA
@@ -87,31 +121,49 @@ btnSend.addEventListener('click', () => {
 const emailLog = document.getElementById('emailLogin');
 const passLog = document.getElementById('passLogin');
 const btnLogin = document.getElementById('btnLogin');
+const returnLog = document.getElementById('retornologin');
+const divLogin = document.querySelector('.divLogin');
+const divLogout = document.querySelector('.divLogado');
 
 btnLogin.addEventListener('click', () => {
-   
+
 
 const auth = getAuth();
 signInWithEmailAndPassword(auth, emailLog.value, passLog.value)
   .then((userCredential) => {
     // Signed in
     const user = userCredential.user;
-    console.log('logado' + emailLog.value + passLog.value);
-    // ...
+    returnLog.innerText = "Login realizado!"
+    // troca por botão deslogar
+    divLogin.style.display = "none";
+divLogout.style.display = "block";
   })
   .catch((error) => {
     const errorCode = error.code;
     const errorMessage = error.message;
-    console.log('não logou' + emailLog.value + passLog.value);
+    returnLog.innerText = "Usuário/Senha inválidos!"
   });
-})
-/* 
-<!-- url do realtime database -->
-<!-- https://console.firebase.google.com/u/1/project/e-commercedbtechteam/database/e-commercedbtechteam-default-rtdb/data/~2F -->
 
+});
 
-<!-- Conta de serviço Firebase
-firebase-adminsdk-hkyhi@e-commercedbtechteam.iam.gserviceaccount.com
- -->
+//-------------------------------------------DESLOGAR
+const btnLogout = document.getElementById('btndeslogar');
 
- */
+btnLogout.addEventListener('click', () => {
+    const auth = getAuth();
+signOut(auth).then(() => {
+  // Sign-out successful.
+  divLogin.style.display = "block";
+divLogout.style.display = "none";
+}).catch((error) => {
+  // An error happened.
+});
+
+});
+
+//---------------------ALTERAR SENHA DE CADASTRO
+const emailAlt = document.getElementById('emailaltsenha');
+const passAlt = document.getElementById('passaltsenha');
+const btnAlt = document.getElementById('btnaltsenha');
+const returnAlt = document.getElementById('retornoaltsenha');
+
