@@ -4,7 +4,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/9.9.2/firebase
 
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.9.2/firebase-analytics.js";
 
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, sendSignInLinkToEmail, signOut } from 'https://www.gstatic.com/firebasejs/9.9.2/firebase-auth.js';
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, sendSignInLinkToEmail, signOut, reauthenticateWithCredential, deleteUser } from 'https://www.gstatic.com/firebasejs/9.9.2/firebase-auth.js';
 
 
 // TODO: Add SDKs for Firebase products that you want to use
@@ -124,6 +124,7 @@ const btnLogin = document.getElementById('btnLogin');
 const returnLog = document.getElementById('retornologin');
 const divLogin = document.querySelector('.divLogin');
 const divLogout = document.querySelector('.divLogado');
+const divExcluir = document.getElementById('divexcluir');
 
 btnLogin.addEventListener('click', () => {
 
@@ -137,6 +138,7 @@ signInWithEmailAndPassword(auth, emailLog.value, passLog.value)
     // troca por botão deslogar
     divLogin.style.display = "none";
 divLogout.style.display = "block";
+divExcluir.style.display = "block"
   })
   .catch((error) => {
     const errorCode = error.code;
@@ -155,6 +157,7 @@ signOut(auth).then(() => {
   // Sign-out successful.
   divLogin.style.display = "block";
 divLogout.style.display = "none";
+divExcluir.style.display = "none";
 }).catch((error) => {
   // An error happened.
 });
@@ -166,4 +169,29 @@ const emailAlt = document.getElementById('emailaltsenha');
 const passAlt = document.getElementById('passaltsenha');
 const btnAlt = document.getElementById('btnaltsenha');
 const returnAlt = document.getElementById('retornoaltsenha');
+
+
+//-----------------------------------------EXCLUIR USUÁRIO
+const btnDelete = document.getElementById('btnexcluir');
+
+
+btnDelete.addEventListener('click', () => {
+    
+    const auth = getAuth();
+    const user = auth.currentUser;
+    
+    deleteUser(user).then(() => {
+      // User deleted.
+      divLogin.style.display = "block";
+    divLogout.style.display = "none";
+    divExcluir.style.display = "none";
+    
+    }).catch((error) => {
+      // An error ocurred
+      // ...
+    });
+    
+    
+
+});
 
