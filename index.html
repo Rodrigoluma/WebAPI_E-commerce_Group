@@ -47,6 +47,10 @@
     <div class="bordergrids" id="divaltsenha">
       <h2 class="text-primary" style="margin-left: 15px; margin-bottom: 10px">Alterar senha no firebase</h2>
       <form class="container" id="contactFormAltSenha">
+        <label for="exampleFormControlInput1">Email</label>
+        <span></span>
+        <input type="email" class="form-control" id="emailold" placeholder="email de login">
+        <BR></BR>
         <label for="exampleFormControlInput1">Password Atual</label>
         <span></span>
         <input type="password" class="form-control" id="passold" placeholder="Password atual">
@@ -60,7 +64,7 @@
     </div>
     <div class="bordergrids" id="divexcluir">
       <h2 class="text-primary" style="margin-left: 15px; margin-bottom: 10px">Excluir usuário do firebase</h2>
-      
+      <p id="retornoexcluir"></p>
       <button type="submit" id="btnexcluir" class="btn btn-primary" style="margin-left: 15px; margin-top: 10px">Excluir</button>
     
     </div>
@@ -77,6 +81,18 @@
         <p id="retornoreset"></p>
         </form>
       <button type="submit" id="btnreset" class="btn btn-primary" style="margin-left: 15px; margin-top: 10px">Resetar</button>
+    </div>
+    <div class="bordergrids">
+      <h2 class="text-primary" style="margin-left: 15px; margin-bottom: 10px">Login Facebook</h2>
+      <button type="submit" id="btnfacebook" class="btn btn-primary" style="margin-left: 15px; margin-top: 10px">Login</button>
+    </div>
+    <div class="bordergrids">
+      <h2 class="text-primary" style="margin-left: 15px; margin-bottom: 10px">Login Twitter</h2>
+      <button type="submit" id="btntwitter" class="btn btn-primary" style="margin-left: 15px; margin-top: 10px">Login</button>
+    </div>
+     <div class="bordergrids">
+      <h2 class="text-primary" style="margin-left: 15px; margin-bottom: 10px">Login Google</h2>
+      <button type="submit" id="btngoogle" class="btn btn-primary" style="margin-left: 15px; margin-top: 10px">Login</button>
     </div>
   </div>
     <script src="cadast.js" type="module"></script>

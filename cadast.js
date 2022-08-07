@@ -5,7 +5,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/9.9.2/firebase
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.9.2/firebase-analytics.js";
 
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, sendSignInLinkToEmail, 
-    signOut, reauthenticateWithCredential, deleteUser, updatePassword, 
+    signOut, sendEmailVerification, deleteUser, updatePassword, 
     sendPasswordResetEmail } from 'https://www.gstatic.com/firebasejs/9.9.2/firebase-auth.js';
 
 
@@ -76,36 +76,13 @@ btnSend.addEventListener('click', () => {
     const user = userCredential.user;
     
     // ...ENVIO DE EMAIL DE VERIFICAÇÃO
-    const actionCodeSettings = {
-        // URL you want to redirect back to. The domain (www.example.com) for this
-        // URL must be in the authorized domains list in the Firebase Console.
-        url: 'https://rodrigoluma.github.io/WebAPI_E-commerce_Group/',
-        // This must be true.
-        handleCodeInApp: true,
-        iOS: {
-          bundleId: 'com.example.ios'
-        },
-        android: {
-          packageName: 'com.example.android',
-          installApp: true,
-          minimumVersion: '12'
-        },
-        dynamicLinkDomain: 'example.page.link'
-      };
-    sendSignInLinkToEmail(auth, emailCad.value, actionCodeSettings)
+sendEmailVerification(auth.currentUser)
   .then(() => {
-    // The link was successfully sent. Inform the user.
-    // Save the email locally so you don't need to ask the user for it again
-    // if they open the link on the same device.
-    window.localStorage.setItem('emailForSignIn', email);
-    console.log('email enviado');
+    console.log('email de cadastro enviado');
+    // Email verification sent!
     // ...
-  })
-  .catch((error) => {
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    console.log('email nao enviado erro: ' + errorCode + errorMessage);
-    // ...
+  }).catch((error) => {
+    console.log('nao enviado o email de cadastro');
   });
   })
   .catch((error) => {
@@ -171,6 +148,7 @@ divAltSenha.style.display = "none";
 });
 
 //---------------------ALTERAR SENHA DE CADASTRO
+const emailOld = document.getElementById('emailold');
 const passOld = document.getElementById('passold');
 const passNew = document.getElementById('passnew');
 const btnAlt = document.getElementById('btnaltsenha');
@@ -178,10 +156,27 @@ const returnAlt = document.getElementById('retornoaltsenha');
 
 
 btnAlt.addEventListener('click', () => {
+    const auth = getAuth();
+    signInWithEmailAndPassword(auth, emailOld.value, passOld.value)
+    .then((userCredential) => {
+    // Signed in
+    const user = userCredential.user;
+    /* user = auth.currentUser; */
+    updatePassword(user, passNew.value).then(() => {
+      // Update successful.
+    }).catch((error) => {
+      // An error ocurred
+      // ...
+    });
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    returnAlt.innerText = "Usuário/senha inválidos";
+  });
     
     
-
-})
+});
 
 
 //-----------------------------------------EXCLUIR USUÁRIO
@@ -189,21 +184,31 @@ const btnDelete = document.getElementById('btnexcluir');
 
 
 btnDelete.addEventListener('click', () => {
-    
+   //confere se está logado para poder excluir (presumindo que o botão esteja na área de cadastro que só aparece logado)
     const auth = getAuth();
     const user = auth.currentUser;
     
-    deleteUser(user).then(() => {
-      // User deleted.
-      divLogin.style.display = "block";
-    divLogout.style.display = "none";
-    divExcluir.style.display = "none";
-    divAltSenha.style.display = "none";
 
-    }).catch((error) => {
-      // An error ocurred
-      // ...
-    });
+if (user) {
+  // User is signed in, see docs for a list of available properties
+  // https://firebase.google.com/docs/reference/js/firebase.User
+  // ...
+  
+  deleteUser(user).then(() => {
+    // User deleted.
+    divLogin.style.display = "block";
+  divLogout.style.display = "none";
+  divExcluir.style.display = "none";
+  divAltSenha.style.display = "none";
+
+  }).catch((error) => {
+    // An error ocurred
+    // ...
+  });
+} else {
+  // No user is signed in.
+  document.getElementById('retornoexcluir').innerText = "Refaça login";
+}
 });
 
 
