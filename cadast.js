@@ -1,10 +1,10 @@
 // Import the functions you need from the SDKs you need
 
-import initializeApp from "firebase/app";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.9.2/firebase-app.js";
 
-import getAnalytics from "firebase/analytics";
+import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.9.2/firebase-analytics.js";
 
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/9.9.2/firebase-auth.js';
 
 
 // TODO: Add SDKs for Firebase products that you want to use
@@ -61,9 +61,7 @@ const passCad = document.getElementById('password');
 const photoCad = document.getElementById('imgAvatar').value;
 const btnSend = document.getElementById('btnCad');
 
-const emailLog = document.getElementById('emailLogin').value;
-const passLog = document.getElementById('passLogin').value;
-const btnLogin = document.getElementById('btnLogin');
+
 //---------------------NOVO USER EMAIL/SENHA
 
 
@@ -72,7 +70,7 @@ btnSend.addEventListener('click', () => {
     createUserWithEmailAndPassword(auth, emailCad.value, passCad.value)
   .then((userCredential) => {
     // Signed in
-    console.log("user connected");
+    console.log("user cadastrado" + emailCad.value + passCad.value);
     const user = userCredential.user;
     // ...
   })
@@ -86,21 +84,25 @@ btnSend.addEventListener('click', () => {
 
 //---------------------LOGIN USER EMAIL/SENHA
 
+const emailLog = document.getElementById('emailLogin');
+const passLog = document.getElementById('passLogin');
+const btnLogin = document.getElementById('btnLogin');
+
 btnLogin.addEventListener('click', () => {
    
 
 const auth = getAuth();
-signInWithEmailAndPassword(auth, emailLog, passLog)
+signInWithEmailAndPassword(auth, emailLog.value, passLog.value)
   .then((userCredential) => {
     // Signed in
     const user = userCredential.user;
-    console.log('logado');
+    console.log('logado' + emailLog.value + passLog.value);
     // ...
   })
   .catch((error) => {
     const errorCode = error.code;
     const errorMessage = error.message;
-    console.log('não logou');
+    console.log('não logou' + emailLog.value + passLog.value);
   });
 })
 /* 
