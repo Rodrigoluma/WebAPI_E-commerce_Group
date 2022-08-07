@@ -4,7 +4,14 @@
     
 }
 
-#gridFirebase{
+#gridFirebase1{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    height: 200px;
+    width: 100vw;
+    justify-items: center;
+}
+#gridFirebase2{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     height: 200px;
@@ -14,11 +21,14 @@
 .bordergrids{
     border: 1px solid gray;
     padding: 10px;
-
+    width: 22vw;
 }
 .divLogado{
     display: none;
 }
 #divexcluir{
     display:none;
+}
+#divaltsenha{
+    display: none;
 }

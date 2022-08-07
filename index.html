@@ -8,7 +8,7 @@
     <title>Teste no firebase</title>
 </head>
 <body class="container" style="margin-top: 50px; width: 50%; height:auto;">
-  <div id="gridFirebase">
+  <div id="gridFirebase1">
     <div class="bordergrids">
       <h2 class="text-primary" style="margin-left: 15px; margin-bottom: 10px">Cadastrar no firebase</h2>
       <form class="container" id="contactFormCad">
@@ -44,16 +44,16 @@
         <button type="submit" id="btndeslogar" class="btn btn-primary" style="margin-left: 15px; margin-top: 10px">Sign out</button>
       </div>
     </div>
-    <div class="bordergrids">
+    <div class="bordergrids" id="divaltsenha">
       <h2 class="text-primary" style="margin-left: 15px; margin-bottom: 10px">Alterar senha no firebase</h2>
       <form class="container" id="contactFormAltSenha">
-        <label for="exampleFormControlInput1">Email</label>
+        <label for="exampleFormControlInput1">Password Atual</label>
         <span></span>
-        <input type="email" class="form-control" id="emailaltsenha" placeholder="Enter your email">
+        <input type="password" class="form-control" id="passold" placeholder="Password atual">
         <BR></BR>
-        <label for="exampleFormControlInput1">Password</label>
+        <label for="exampleFormControlInput1">Novo Password</label>
         <span></span>
-        <input type="password" class="form-control" id="passaltsenha" placeholder="********">
+        <input type="password" class="form-control" id="passnew" placeholder="********">
         <p id="retornoaltsenha"></p>
       </form>
       <button type="submit" id="btnaltsenha" class="btn btn-primary" style="margin-left: 15px; margin-top: 10px">Alterar senha</button>
@@ -65,8 +65,19 @@
     
     </div>
   </div>
-  <div id="gridMongoDB">
-
+  <br><br>
+  <div id="gridFirebase2">
+    <div class="bordergrids">
+      <h2 class="text-primary" style="margin-left: 15px; margin-bottom: 10px">RESETAR senha cadastrada</h2>
+      <form class="container" id="contactFormCad">
+        <label for="exampleFormControlInput1">Email</label>
+        <span></span>
+        <input type="email" class="form-control" id="emailreset" placeholder="name@example.com">
+        <br><br>
+        <p id="retornoreset"></p>
+        </form>
+      <button type="submit" id="btnreset" class="btn btn-primary" style="margin-left: 15px; margin-top: 10px">Resetar</button>
+    </div>
   </div>
     <script src="cadast.js" type="module"></script>
 </body>

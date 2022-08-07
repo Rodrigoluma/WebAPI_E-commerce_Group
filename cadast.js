@@ -4,7 +4,9 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/9.9.2/firebase
 
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.9.2/firebase-analytics.js";
 
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, sendSignInLinkToEmail, signOut, reauthenticateWithCredential, deleteUser } from 'https://www.gstatic.com/firebasejs/9.9.2/firebase-auth.js';
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, sendSignInLinkToEmail, 
+    signOut, reauthenticateWithCredential, deleteUser, updatePassword, 
+    sendPasswordResetEmail } from 'https://www.gstatic.com/firebasejs/9.9.2/firebase-auth.js';
 
 
 // TODO: Add SDKs for Firebase products that you want to use
@@ -125,6 +127,7 @@ const returnLog = document.getElementById('retornologin');
 const divLogin = document.querySelector('.divLogin');
 const divLogout = document.querySelector('.divLogado');
 const divExcluir = document.getElementById('divexcluir');
+const divAltSenha = document.getElementById('divaltsenha');
 
 btnLogin.addEventListener('click', () => {
 
@@ -138,7 +141,8 @@ signInWithEmailAndPassword(auth, emailLog.value, passLog.value)
     // troca por botão deslogar
     divLogin.style.display = "none";
 divLogout.style.display = "block";
-divExcluir.style.display = "block"
+divExcluir.style.display = "block";
+divAltSenha.style.display = "block";
   })
   .catch((error) => {
     const errorCode = error.code;
@@ -158,6 +162,8 @@ signOut(auth).then(() => {
   divLogin.style.display = "block";
 divLogout.style.display = "none";
 divExcluir.style.display = "none";
+divAltSenha.style.display = "none";
+
 }).catch((error) => {
   // An error happened.
 });
@@ -165,10 +171,17 @@ divExcluir.style.display = "none";
 });
 
 //---------------------ALTERAR SENHA DE CADASTRO
-const emailAlt = document.getElementById('emailaltsenha');
-const passAlt = document.getElementById('passaltsenha');
+const passOld = document.getElementById('passold');
+const passNew = document.getElementById('passnew');
 const btnAlt = document.getElementById('btnaltsenha');
 const returnAlt = document.getElementById('retornoaltsenha');
+
+
+btnAlt.addEventListener('click', () => {
+    
+    
+
+})
 
 
 //-----------------------------------------EXCLUIR USUÁRIO
@@ -185,13 +198,34 @@ btnDelete.addEventListener('click', () => {
       divLogin.style.display = "block";
     divLogout.style.display = "none";
     divExcluir.style.display = "none";
-    
+    divAltSenha.style.display = "none";
+
     }).catch((error) => {
       // An error ocurred
       // ...
     });
-    
-    
-
 });
 
+
+//---------------------------CASO ESQUEÇA A SENHA:
+
+const resetPassword = document.getElementById('emailreset');
+const btnReset = document.getElementById('btnreset');
+const returnReset = document.getElementById('retornoreset');
+
+btnReset.addEventListener('click', () => {
+    const auth = getAuth();
+        sendPasswordResetEmail(auth, resetPassword.value)
+          .then(() => {
+            // Password reset email sent!
+            // log serve para acompanhar o resultado
+            returnReset.innerText = "Email enviado para resetar a senha"
+          })
+          .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            // log servindo só para acompanhar o resultado
+            returnReset.innerText = "Erro - console"
+            console.log('Erro ao enviar Email -errorCode:' + errorCode + " errorMessage: " + errorMessage);
+          });
+});
