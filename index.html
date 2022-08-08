@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index.css">
+    <title>Teste no firebase</title>
+</head>
+<body class="container" style="margin-top: 50px; width: 50%; height:auto;">
+  <div id="gridFirebase1">
+    <div class="bordergrids">
+      <h2 class="text-primary" style="margin-left: 15px; margin-bottom: 10px">Cadastrar no firebase</h2>
+      <form class="container" id="contactFormCad">
+        <label for="exampleFormControlInput1">Email</label>
+        <span></span>
+        <input type="email" class="form-control" id="email" placeholder="name@example.com">
+        <br><br>
+        <label for="exampleFormControlInput1">Password</label>
+        <span></span>
+        <input type="password" class="form-control" id="password" placeholder="********">
+        <br><br>
+        <p id="retornocad"></p>
+        </form>
+      <button type="submit" id="btnCad" class="btn btn-primary" style="margin-left: 15px; margin-top: 10px">Cadastrar</button>
+    </div>
+    <div class="bordergrids">
+      <div class="divLogin">
+        <h2 class="text-primary" style="margin-left: 15px; margin-bottom: 10px">Login no firebase</h2>
+        <form class="container" id="contactFormLogin">
+          <label for="exampleFormControlInput1">Email</label>
+          <span></span>
+          <input type="email" class="form-control" id="emailLogin" placeholder="Enter your email">
+          <BR></BR>
+          <label for="exampleFormControlInput1">Password</label>
+          <span></span>
+          <input type="password" class="form-control" id="passLogin" placeholder="********">
+          <p id="retornologin"></p>
+        </form>
+        <button type="submit" id="btnLogin" class="btn btn-primary" style="margin-left: 15px; margin-top: 10px">Login</button>
+      </div>
+      <div class="divLogado">
+        <p> Usuário logado</p>
+        <button type="submit" id="btndeslogar" class="btn btn-primary" style="margin-left: 15px; margin-top: 10px">Sign out</button>
+      </div>
+    </div>
+    <div class="bordergrids" id="divaltsenha">
+      <h2 class="text-primary" style="margin-left: 15px; margin-bottom: 10px">Alterar senha no firebase</h2>
+      <form class="container" id="contactFormAltSenha">
+        <label for="exampleFormControlInput1">Email</label>
+        <span></span>
+        <input type="email" class="form-control" id="emailold" placeholder="email de login">
+        <BR></BR>
+        <label for="exampleFormControlInput1">Password Atual</label>
+        <span></span>
+        <input type="password" class="form-control" id="passold" placeholder="Password atual">
+        <BR></BR>
+        <label for="exampleFormControlInput1">Novo Password</label>
+        <span></span>
+        <input type="password" class="form-control" id="passnew" placeholder="********">
+        <p id="retornoaltsenha"></p>
+      </form>
+      <button type="submit" id="btnaltsenha" class="btn btn-primary" style="margin-left: 15px; margin-top: 10px">Alterar senha</button>
+    </div>
+    <div class="bordergrids" id="divexcluir">
+      <h2 class="text-primary" style="margin-left: 15px; margin-bottom: 10px">Excluir usuário do firebase</h2>
+      <p id="retornoexcluir"></p>
+      <button type="submit" id="btnexcluir" class="btn btn-primary" style="margin-left: 15px; margin-top: 10px">Excluir</button>
+    
+    </div>
+  </div>
+  <br><br>
+  <div id="gridFirebase2">
+    <div class="bordergrids">
+      <h2 class="text-primary" style="margin-left: 15px; margin-bottom: 10px">RESETAR senha cadastrada</h2>
+      <form class="container" id="contactFormCad">
+        <label for="exampleFormControlInput1">Email</label>
+        <span></span>
+        <input type="email" class="form-control" id="emailreset" placeholder="name@example.com">
+        <br><br>
+        <p id="retornoreset"></p>
+        </form>
+      <button type="submit" id="btnreset" class="btn btn-primary" style="margin-left: 15px; margin-top: 10px">Resetar</button>
+    </div>
+    <div class="bordergrids">
+      <h2 class="text-primary" style="margin-left: 15px; margin-bottom: 10px">Login Facebook</h2>
+      <button type="submit" id="btnfacebook" class="btn btn-primary" style="margin-left: 15px; margin-top: 10px">Login</button>
+    </div>
+    <div class="bordergrids">
+      <h2 class="text-primary" style="margin-left: 15px; margin-bottom: 10px">Login Twitter</h2>
+      <button type="submit" id="btntwitter" class="btn btn-primary" style="margin-left: 15px; margin-top: 10px">Login</button>
+    </div>
+     <div class="bordergrids">
+      <h2 class="text-primary" style="margin-left: 15px; margin-bottom: 10px">Login Google</h2>
+      <button type="submit" id="btngoogle" class="btn btn-primary" style="margin-left: 15px; margin-top: 10px">Login</button>
+    </div>
+  </div>
+    <script src="cadast.js" type="module"></script>
+</body>
+</html>
